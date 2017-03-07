@@ -3,7 +3,7 @@
 const fs = require('fs');
 const AWS = require('aws-sdk');
 
-const SECRET_FILE = '.serverless-secret.json';
+const SECRET_LOCATION = process.env['CRYPT_LOCATION'] || 'file://.serverless-secret.json';
 
 const aws = require('aws-sdk')
 
@@ -33,9 +33,9 @@ function data(location, cb) {
 }
 
 module.exports = {
-  get(name, location) {
+  get(name) {
     return new Promise((resolve, reject) => {
-      data(location, function(err, data) { 
+      data(SECRET_LOCATION, function(err, data) { 
         const secret = JSON.parse(data));
         const kms = new AWS.KMS({ region: secret['__slscrypt-region'] });
         kms.decrypt({

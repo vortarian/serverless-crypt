@@ -15,7 +15,10 @@ class Crypt {
     this.serverless = serverless;
     this.options = options || {};
     this.provider = this.serverless.getProvider('aws');
-    this.secret_location = options.location || options.l || SECRET_LOCATION;
+    this.secret_location = options.location || 
+      options.l || 
+      this.serverless.service.custom.crypt.location ||
+      SECRET_LOCATION;
 
     Object.assign(
       this,
