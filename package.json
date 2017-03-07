@@ -1,6 +1,6 @@
 {
   "name": "serverless-crypt",
-  "version": "0.0.3",
+  "version": "1.0.1",
   "description": "Securing the secrets on Serverless Framework by AWS KMS encryption.",
   "main": "index.js",
   "scripts": {
@@ -9,7 +9,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/marcy-terui/serverless-crypt.git"
+    "url": "git+https://github.com/vortarian/serverless-crypt.git"
   },
   "files": [
     "index.js",
@@ -23,9 +23,9 @@
   "author": "Masashi Terui",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/marcy-terui/serverless-crypt/issues"
+    "url": "https://github.com/vortarian/serverless-crypt/issues"
   },
-  "homepage": "https://github.com/marcy-terui/serverless-crypt#readme",
+  "homepage": "https://github.com/vortarian/serverless-crypt#readme",
   "devDependencies": {
     "chai": "^3.5.0",
     "coveralls": "^2.11.14",
