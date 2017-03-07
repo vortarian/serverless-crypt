@@ -32,7 +32,6 @@ function data(location, cb) {
   }
 }
 
-console.log(SECRET_LOCATION);
 module.exports = {
   get(name) {
     return new Promise((resolve, reject) => {
