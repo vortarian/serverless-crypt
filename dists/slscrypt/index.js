@@ -36,7 +36,7 @@ module.exports = {
   get(name) {
     return new Promise((resolve, reject) => {
       data(SECRET_LOCATION, function(err, data) { 
-        const secret = JSON.parse(data));
+        const secret = JSON.parse(data);
         const kms = new AWS.KMS({ region: secret['__slscrypt-region'] });
         kms.decrypt({
           CiphertextBlob: new Buffer(secret[name], 'base64'),
@@ -46,7 +46,7 @@ module.exports = {
           }
           resolve(data.Plaintext.toString('utf-8'));
         });
-      })
+      });
     });
   },
 };
