@@ -2,12 +2,11 @@ serverless-crypt
 =======
 
 [![serverless](http://public.serverless.com/badges/v3.svg)](http://www.serverless.com)
-[![Build Status](https://travis-ci.org/marcy-terui/serverless-crypt.svg?branch=master)](https://travis-ci.org/marcy-terui/serverless-crypt)
-[![Coverage Status](https://coveralls.io/repos/github/marcy-terui/serverless-crypt/badge.svg?branch=master)](https://coveralls.io/github/marcy-terui/serverless-crypt?branch=master)
 
 # Description
 
 Securing the secrets on Serverless Framework by AWS KMS encryption.
+* This is a fork of marcy-terui's work to add support for S3 bucket storage of the encrypted secrets.  
 
 # Requirements
 
@@ -16,7 +15,7 @@ Securing the secrets on Serverless Framework by AWS KMS encryption.
 # Installation
 
 ```sh
-npm install serverless-crypt --save
+npm install --save https://github.com/vortarian/serverless-crypt/archive/1.0.0.tar.gz
 ```
 
 # Configuration
@@ -27,13 +26,14 @@ npm install serverless-crypt --save
 provider:
   name: aws
   runtime: nodejs4.3
-#  runtime: python2.7
 
 plugins:
   - serverless-crypt
 
 custom:
-    cryptKeyId: ${env:AWS_KMS_KEYID}
+    crypt:
+      keyId: ${env:AWS_KMS_KEYID}
+      location:  <file:// or s3:// url - must have read/write access>
 ```
 
 ### Supported runtimes
@@ -88,7 +88,8 @@ Configuration example:
 provider:
   name: aws
   runtime: nodejs4.3
-#  runtime: python2.7
+  environment: # Service wide environment variables
+    CRYPT_LOCATION: "${self:custom.crypt.location}"  # ENV Variable the plugin looks for when using the get(...) request at runtime
 
 functions:
   hello:
